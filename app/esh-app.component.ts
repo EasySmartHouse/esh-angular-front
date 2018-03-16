@@ -2,7 +2,8 @@ import { Component } from '@angular/core'
 
 @Component({
     selector: 'esh-app',
-    template: '<spaces-list></spaces-list>'
+    template: `<nav-bar></nav-bar>
+    <router-outlet></router-outlet>`
 })
 export class ESHAppComponent {
 

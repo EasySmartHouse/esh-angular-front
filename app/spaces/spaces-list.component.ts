@@ -1,19 +1,26 @@
 import { Component } from '@angular/core'
+import { SpaceService } from './shared/space.service';
 
 @Component({
-    selector: 'spaces-list',
     template: `
     <div>
         <h1>Current spaces</h1>
         <hr/>
-        <space-thumbnail [space]="space1"></space-thumbnail>
+        <div class="row">
+            <div *ngFor="let space of spaces" class="col-md-5">
+                <space-thumbnail [space]="space"></space-thumbnail>
+            </div>
+        </div>
     </div>
     `
 })
 export class SpacesListComponent {
-    space1 = {
-        id: 1,
-        name: "Guest room",
-        imageUrl: '/app/assets/images/basic-shield.png'
+    spaces:any[]
+
+    constructor(private spaceService: SpaceService){
     }
-}
+
+    ngOnInit(){
+        this.spaces = this.spaceService.getSpaces()
+    }
+}   
