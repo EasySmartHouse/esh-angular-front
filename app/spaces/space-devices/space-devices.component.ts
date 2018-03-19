@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { SpaceService } from '../shared/space.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     templateUrl:
@@ -12,11 +13,13 @@ import { SpaceService } from '../shared/space.service';
 export class SpaceDevicesComponent {
     space:any
 
-    constructor(private spaceService:SpaceService){
+    constructor(private spaceService:SpaceService, 
+         private route:ActivatedRoute){
     }
 
     ngOnInit(){
-        this.space = this.spaceService.getSpace(1)
+        this.space = this.spaceService.getSpace(
+            +this.route.snapshot.params['id'])
     }
 
 }

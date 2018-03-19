@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core'
 @Component({
     selector: 'space-thumbnail',
     template: `
-    <div class="well hoverwell thumbnail">
+    <div [routerLink]="['/spaces', space.id]" class="well hoverwell thumbnail">
         <h2>{{space.name}}</h2>
         <div [hidden]="!space.image">
             <img src="{{space.image}}" alt="{{space.name}}" />
