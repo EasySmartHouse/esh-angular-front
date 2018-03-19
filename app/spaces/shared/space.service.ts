@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core'
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class SpaceService {
     getSpaces(){
-        return SPACES
+        let subject = new Subject()
+        setTimeout(()=> 
+            {subject.next(SPACES); subject.complete();}, 
+            200
+        )
+        return subject;
     }
 
     getSpace(id:number){

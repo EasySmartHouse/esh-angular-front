@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { SpaceService } from './shared/space.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     template: `
@@ -17,10 +18,11 @@ import { SpaceService } from './shared/space.service';
 export class SpacesListComponent {
     spaces:any[]
 
-    constructor(private spaceService: SpaceService){
+    constructor(private spaceService: SpaceService, 
+        private route: ActivatedRoute){
     }
 
     ngOnInit(){
-        this.spaces = this.spaceService.getSpaces()
+        this.spaces = this.route.snapshot.data['spaces']
     }
 }   

@@ -14,13 +14,12 @@ import { Router } from '@angular/router';
     </div>`
 })
 export class CreateSpaceComponent {
+    isDirty:boolean = true
     constructor(private router: Router){
-        
     }
 
     cancel(){
         this.router.navigate(['/spaces']);
     }
-
 
 }
