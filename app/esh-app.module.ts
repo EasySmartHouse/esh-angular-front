@@ -18,6 +18,7 @@ import { ToastrService } from './common/toastr.service';
 import { appRoutes } from './routes';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './errors/404.component';
+import { AuthService } from './user/auth.service';
 
 @NgModule({
     imports: [BrowserModule, RouterModule.forRoot(appRoutes, { useHash: true })],
@@ -35,6 +36,7 @@ import { Error404Component } from './errors/404.component';
         ToastrService,
         SpaceRouteActivator,
         SpacesListResolver,
+        AuthService,
         { provide: 'canDeactivateCreateSpace', useValue: checkDirtyState }
     ],
     bootstrap: [ESHAppComponent]

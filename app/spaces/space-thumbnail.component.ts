@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core'
+import { ISpace } from './index';
 
 @Component({
     selector: 'space-thumbnail',
@@ -22,5 +23,5 @@ import { Component, Input } from '@angular/core'
     `]
 })
 export class SpaceThumbnailComponent {
-    @Input() space:any
+    @Input() space:ISpace
 }

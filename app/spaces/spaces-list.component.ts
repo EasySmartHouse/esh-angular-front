@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { SpaceService } from './shared/space.service';
 import { ActivatedRoute } from '@angular/router';
+import { ISpace } from './index';
 
 @Component({
     template: `
@@ -16,7 +17,7 @@ import { ActivatedRoute } from '@angular/router';
     `
 })
 export class SpacesListComponent {
-    spaces:any[]
+    spaces:ISpace[]
 
     constructor(private spaceService: SpaceService, 
         private route: ActivatedRoute){
