@@ -7,14 +7,17 @@ import { Observable } from 'rxjs/Observable';
 export class SpaceService {
     getSpaces(): Subject<ISpace[]> {
         let subject = new Subject<ISpace[]>()
-        setTimeout(() => { subject.next(SPACES); subject.complete(); },
-            200
-        )
+        setTimeout(() => { subject.next(SPACES); subject.complete(); }, 200)
         return subject;
     }
 
     getSpace(id: number): ISpace {
         return SPACES.find(space => space.id === id)
+    }
+
+    saveSpace(space){
+        space.id = 999
+        SPACES.push(space)
     }
 }
 

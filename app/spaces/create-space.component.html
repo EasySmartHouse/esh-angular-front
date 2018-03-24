@@ -1,0 +1,24 @@
+<h1>New Space</h1>
+<hr>
+<div class="col-md-6">
+  <form #newSpaceForm="ngForm" (ngSubmit)="saveSpace(newSpaceForm.value)" autocomplete="off" novalidate>
+   
+    <div class="form-group" [ngClass]="{'error': newSpaceForm.controls.name?.invalid && newSpaceForm.controls.name?.touched}">
+      <label for="spaceName">Space Name:</label>
+      <em *ngIf="newSpaceForm.controls.name?.invalid && (newSpaceForm.controls.name?.touched)">Required</em>
+      <input (ngModel)="name" name="name" required id="name" type="text" class="form-control" placeholder="Name of a space..." />
+    </div>
+   
+    <div class="form-group" [ngClass]="{'error': newSpaceForm.controls.imageUrl?.invalid && newSpaceForm.controls.imageUrl?.touched}">
+      <label for="imageUrl">Image:</label>
+      <em *ngIf="newSpaceForm.controls.imageUrl?.invalid && newSpaceForm.controls.imageUrl?.touched && newSpaceForm.controls.imageUrl?.errors.required">Required</em>
+      <em *ngIf="newSpaceForm.controls.imageUrl?.invalid && newSpaceForm.controls.imageUrl?.touched  && newSpaceForm.controls.imageUrl?.errors.pattern">Must be a png or jpg url</em>
+      <input (ngModel)="imageUrl" name="imageUrl" required pattern=".*\/.*.(png|jpg)" id="imageUrl" type="text" class="form-control" placeholder="url of image..." />
+      <img [src]="newSpaceForm.controls.imageUrl.value"
+            *ngIf="newSpaceForm.controls.imageUrl?.valid"/>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" [disabled]="newSpaceForm.invalid" class="btn btn-default" (click)="cancel()">Cancel</button>
+  </form>
+</div>

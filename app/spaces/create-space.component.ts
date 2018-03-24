@@ -1,25 +1,32 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router';
+import { SpaceService } from './shared/index';
 
 @Component({
-    template:`
-    <h1>New Space</h1>
-    <hr>
-    <div class="col-md-6">
-        <h3>[Create Space Form]</h3>
-        <br/>
-        <br/>
-        <button type="submit" class="btn btn-primary">Save</button>
-        <button type = "button" class="btn btn-default" (click)="cancel()">Cancel</button>
-    </div>`
+    templateUrl: "app/spaces/create-space.component.html",
+    styles: [`
+        em {float:right; color:#E05C64; padding-left: 10px}
+        .error input {background-color: #E3C3C5;}
+        .error ::-webkit-input-placeholder { color: #999; }
+        .error ::-moz-placeholder { color: #999; }
+        .error :-moz-placeholder { color: #999; }
+        .error :ms-input-placeholder { color: #999; }
+  `]
 })
 export class CreateSpaceComponent {
     isDirty:boolean = true
-    constructor(private router: Router){
+    constructor(private router: Router, 
+        private spaceService:SpaceService){
+    }
+
+    saveSpace(formValues){
+        this.spaceService.saveSpace(formValues)
+        this.isDirty = false
+        this.router.navigate(['/spaces'])
     }
 
     cancel(){
-        this.router.navigate(['/spaces']);
+        this.router.navigate(['/spaces'])
     }
 
 }
