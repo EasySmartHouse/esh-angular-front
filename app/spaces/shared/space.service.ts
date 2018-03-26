@@ -25,16 +25,19 @@ const SPACES: ISpace[] = [
     {
         id: 1,
         name: "Guest room",
-        image: '/app/assets/images/026-lamp-1.png'
+        image: '/app/assets/images/026-lamp-1.png',
+        devices: []
     },
     {
         id: 2,
         name: "Main room",
-        image: '/app/assets/images/040-home.png'
+        image: '/app/assets/images/040-home.png',
+        devices: []
     },
     {
         id: 3,
         name: "Kitchen",
-        image: '/app/assets/images/033-refrigerator.png'
+        image: '/app/assets/images/033-refrigerator.png',
+        devices: []
     },
 ]
