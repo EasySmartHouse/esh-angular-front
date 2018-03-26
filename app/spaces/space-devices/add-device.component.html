@@ -38,6 +38,6 @@
         <textarea formControlName="deviceDescription" id="deviceDescription" rows=3 class="form-control" placeholder="Device description..."></textarea>
       </div>
       <button type="submit" [disabled]="addDeviceForm.invalid" class="btn btn-primary">Save</button>
-      <button type="button" class="btn btn-default">Cancel</button>
+      <button type="button" (click)="cancel()" class="btn btn-default">Cancel</button>
     </form>
   </div>

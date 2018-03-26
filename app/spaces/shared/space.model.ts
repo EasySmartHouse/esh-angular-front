@@ -5,7 +5,7 @@ export interface ISpace {
     devices: IDevice[]
 }
 
-enum DeviceType {
+export enum DeviceType {
     Sensor,
     Switch,
     AdjustableSwitch, 

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Output, EventEmitter } from '@angular/core'
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { IDevice } from '../index';
+import { IDevice, restrictedWords } from '../index';
 
 @Component({
+    selector: 'add-device',
     templateUrl: 'app/spaces/space-devices/add-device.component.html',
     styles: [`
     em {float:right; color:#E05C64; padding-left: 10px}
@@ -14,6 +15,9 @@ import { IDevice } from '../index';
 `]
 })
 export class AddDeviceComponent implements OnInit {
+    @Output() saveNewDevice = new EventEmitter()
+    @Output() cancelAddDevice = new EventEmitter()
+
     addDeviceForm: FormGroup
     deviceLabel: FormControl
     deviceAddress: FormControl
@@ -25,7 +29,7 @@ export class AddDeviceComponent implements OnInit {
         this.deviceAddress = new FormControl('', Validators.required)
         this.deviceType = new FormControl('', Validators.required)
         this.deviceDescription = new FormControl('', [Validators.required,
-        Validators.maxLength(400), this.restrictedWords(['foo', 'bar'])])
+        Validators.maxLength(400), restrictedWords(['foo', 'bar'])])
 
         this.addDeviceForm = new FormGroup({
             deviceLabel: this.deviceLabel,
@@ -33,20 +37,6 @@ export class AddDeviceComponent implements OnInit {
             deviceType: this.deviceType,
             deviceDescription: this.deviceDescription
         })
-    }
-
-    private restrictedWords(words) {
-        return (control: FormControl): { [key: string]: any } => {
-            if (!words) return null
-
-            var invalidWords = words
-                .map(w => control.value.includes(w) ? w : null)
-                .filter(w => w != null)
-
-            return invalidWords && invalidWords.length > 0
-                ? { 'restrictedWords': invalidWords.join(', ') }
-                : null;
-        }
     }
 
     saveDevice(formValues) {
@@ -59,7 +49,11 @@ export class AddDeviceComponent implements OnInit {
             description: formValues.deviceDescription,
             value: undefined
         }
-        console.log(device)
+        this.saveNewDevice.emit(device)
+    }
+
+    cancel() {
+        this.cancelAddDevice.emit()
     }
 
 }

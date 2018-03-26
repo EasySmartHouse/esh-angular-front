@@ -1,10 +1,25 @@
 <div class="container">
-    <img [src]="space?.image" [alt]="space?.name" class="space-image">
-  
-    <div class="row">
-      <div class="col-md-11">
-        <h2>{{space?.name}} </h2>
-      </div>
+  <img [src]="space?.image" [alt]="space?.name" class="space-image">
+
+  <div class="row">
+    <div class="col-md-11">
+      <h2>{{space?.name}} </h2>
     </div>
-  
   </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-2">
+      <h3 style="margin:0">Devices</h3>
+    </div>
+
+    <div class="col-md-2">
+      <a (click)="addDevice()">Add Device</a>
+    </div>
+  </div>
+
+  <device-list *ngIf="!addMode" [devices]="space?.devices"></device-list>
+  <add-device *ngIf="addMode" (saveNewDevice)="saveNewDevice($event)" (cancelAddDevice)="cancelAddDevice()"></add-device>
+
+</div>

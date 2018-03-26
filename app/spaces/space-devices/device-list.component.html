@@ -1,0 +1,10 @@
+<div class="row" *ngFor="let device of devices">
+    <div class="col-md-10">
+        <div class="well">
+            <h4>{{device.label}}</h4>
+            <h6>State: {{device.value}}</h6>
+            <br/>
+            <p>{{device.description}}</p>
+        </div>
+    </div>
+</div>

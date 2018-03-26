@@ -10,7 +10,8 @@ import {
     CreateSpaceComponent,
     SpaceRouteActivator,
     SpacesListResolver,
-    AddDeviceComponent
+    AddDeviceComponent,
+    DeviceListComponent
 
 } from './spaces/index'
 
@@ -36,7 +37,8 @@ import { AuthService } from './user/auth.service';
         CreateSpaceComponent,
         NavBarComponent,
         Error404Component,
-        AddDeviceComponent
+        AddDeviceComponent,
+        DeviceListComponent
     ],
     providers: [
         SpaceService,

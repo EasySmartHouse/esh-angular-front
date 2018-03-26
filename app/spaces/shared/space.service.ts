@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Subject } from 'rxjs/Subject';
-import { ISpace } from './space.model';
+import { ISpace, DeviceType } from './space.model';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -19,6 +19,11 @@ export class SpaceService {
         space.id = 999
         SPACES.push(space)
     }
+
+    updateSpace(space){
+         let index = SPACES.findIndex(x => x.id = space.id)
+         SPACES[index] = space
+    }
 }
 
 const SPACES: ISpace[] = [
@@ -26,7 +31,15 @@ const SPACES: ISpace[] = [
         id: 1,
         name: "Guest room",
         image: '/app/assets/images/026-lamp-1.png',
-        devices: []
+        devices: [{
+            id: 123,
+            label: "Lamp switch",
+            address: "AD3452347767767FF",
+            enabled: true,
+            type: DeviceType.Switch,
+            description: "Guest Room lamp switch",
+            value: "On"
+        }]
     },
     {
         id: 2,
