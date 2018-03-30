@@ -15,6 +15,7 @@ import { ISpace, IDevice } from '../index';
 export class SpaceDevicesComponent {
     space: ISpace
     addMode: boolean
+    filterBy: string = 'all'
 
     constructor(private spaceService: SpaceService,
         private route: ActivatedRoute) {
@@ -24,7 +25,7 @@ export class SpaceDevicesComponent {
         this.space = this.spaceService.getSpace(
             +this.route.snapshot.params['id'])
     }
-
+ 
     addDevice() {
         this.addMode = true
     }

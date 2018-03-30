@@ -6,7 +6,7 @@
                 <i *ngIf="device.popularity > 2" class="glyphicon glyphicon-fire" style="color:red"></i>
             </div>
             <div well-body>
-                <h6>State: {{device.value}}</h6>
+                <h6>State: {{device.value | switchValue}}</h6>
                 <span>Device type: {{device.type | deviceType}}</span>
                 <br/>
                 <p>{{device.description}}</p>

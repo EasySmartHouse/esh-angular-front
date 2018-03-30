@@ -12,7 +12,8 @@ import {
     SpacesListResolver,
     AddDeviceComponent,
     DeviceListComponent,
-    DeviceTypePipe
+    DeviceTypePipe,
+    SwitchValuePipe
 
 } from './spaces/index'
 
@@ -42,7 +43,8 @@ import { CollapsibleWellComponent } from './common/collapsible-well.component';
         AddDeviceComponent,
         DeviceListComponent,
         CollapsibleWellComponent,
-        DeviceTypePipe
+        DeviceTypePipe,
+        SwitchValuePipe
     ],
     providers: [
         SpaceService,
