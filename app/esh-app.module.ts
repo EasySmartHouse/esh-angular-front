@@ -11,7 +11,8 @@ import {
     SpaceRouteActivator,
     SpacesListResolver,
     AddDeviceComponent,
-    DeviceListComponent
+    DeviceListComponent,
+    DeviceTypePipe
 
 } from './spaces/index'
 
@@ -40,7 +41,8 @@ import { CollapsibleWellComponent } from './common/collapsible-well.component';
         Error404Component,
         AddDeviceComponent,
         DeviceListComponent,
-        CollapsibleWellComponent
+        CollapsibleWellComponent,
+        DeviceTypePipe
     ],
     providers: [
         SpaceService,

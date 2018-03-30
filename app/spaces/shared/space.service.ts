@@ -38,7 +38,7 @@ const SPACES: ISpace[] = [
             enabled: true,
             type: DeviceType.Switch,
             description: "Guest Room lamp switch",
-            value: "On",
+            value: 1,
             popularity: 3
         }]
     },
