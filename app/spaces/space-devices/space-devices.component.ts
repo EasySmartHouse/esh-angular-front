@@ -16,6 +16,7 @@ export class SpaceDevicesComponent {
     space: ISpace
     addMode: boolean
     filterBy: string = 'all'
+    sortBy: string = 'popularity'
 
     constructor(private spaceService: SpaceService,
         private route: ActivatedRoute) {

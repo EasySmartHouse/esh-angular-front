@@ -10,11 +10,14 @@ import { OnChanges } from '@angular/core';
 export class DeviceListComponent implements OnChanges {
     @Input() devices: IDevice[]
     @Input() filterBy: string;
+    @Input() sortBy: string;
     visibleDevices: IDevice[] = [];
 
     ngOnChanges(): void {
         if (this.devices) {
             this.filterDevices(this.filterBy);
+            this.sortBy === 'label' ? this.visibleDevices.sort(sortByLabelAsc)
+                : this.visibleDevices.sort(sortByPopularityDesc)
         }
     }
 
@@ -38,4 +41,14 @@ export class DeviceListComponent implements OnChanges {
         }
     }
 
+}
+
+function sortByLabelAsc(d1: IDevice, d2: IDevice) {
+    if (d1.label > d2.label) return 1
+    else if (d1.label === d2.label) return 0
+    else return -1
+}
+
+function sortByPopularityDesc(d1: IDevice, d2: IDevice) {
+    return d2.popularity - d1.popularity
 }
