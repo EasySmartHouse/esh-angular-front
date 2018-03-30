@@ -19,5 +19,6 @@ export interface IDevice {
     enabled: boolean
     type: DeviceType
     description: string
-    value: any
+    value: any,
+    popularity: number
 }

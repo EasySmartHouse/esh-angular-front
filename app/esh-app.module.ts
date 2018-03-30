@@ -22,6 +22,7 @@ import { appRoutes } from './routes';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './errors/404.component';
 import { AuthService } from './user/auth.service';
+import { CollapsibleWellComponent } from './common/collapsible-well.component';
 
 @NgModule({
     imports: [BrowserModule, 
@@ -38,11 +39,13 @@ import { AuthService } from './user/auth.service';
         NavBarComponent,
         Error404Component,
         AddDeviceComponent,
-        DeviceListComponent
+        DeviceListComponent,
+        CollapsibleWellComponent
     ],
     providers: [
         SpaceService,
         ToastrService,
+        CollapsibleWellComponent,
         SpaceRouteActivator,
         SpacesListResolver,
         AuthService,
