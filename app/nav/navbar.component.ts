@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { AuthService } from '../user/auth.service';
+import { IDevice, SpaceService } from '../spaces/index';
 
 @Component({
     selector: 'nav-bar', 
@@ -12,6 +13,18 @@ import { AuthService } from '../user/auth.service';
     `]
 })
 export class NavBarComponent {
-    constructor(private auth: AuthService){
+    searchTerm: string = "";
+    foundDevices: IDevice[];
+
+    constructor(private auth: AuthService, private spaceService: SpaceService){
+    }
+
+    searchDevices(searchTerm){
+        this.spaceService.searchDevices(searchTerm).subscribe(
+            devices => {
+                this.foundDevices = devices;
+                console.log(this.foundDevices);
+            }
+        )
     }
 }

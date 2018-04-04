@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core'
+import { Injectable, EventEmitter } from '@angular/core'
 import { Subject } from 'rxjs/Subject';
 import { ISpace, DeviceType } from './space.model';
 import { Observable } from 'rxjs/Observable';
+import { IDevice } from '../index';
 
 @Injectable()
 export class SpaceService {
@@ -13,7 +14,7 @@ export class SpaceService {
 
     getSpace(id: number): ISpace {
         return SPACES.find(space => space.id === id)
-    }
+    } 
 
     saveSpace(space){
         space.id = 999
@@ -23,6 +24,29 @@ export class SpaceService {
     updateSpace(space){
          let index = SPACES.findIndex(x => x.id = space.id)
          SPACES[index] = space
+    }
+
+    searchDevices(searchTerm: string){
+        var term = searchTerm.toLocaleLowerCase();
+        var results: IDevice[] = [];
+
+        SPACES.forEach(space =>{
+            var matchingDevices = space.devices.filter(device=>
+                device.label.toLocaleLowerCase().indexOf(term) > -1
+            )
+            matchingDevices = matchingDevices.map((device:any) => {
+                device.spaceId = space.id
+                return device;
+            })
+            results = results.concat(matchingDevices)
+        })
+
+        var emitter = new EventEmitter(true);
+        setTimeout(() => {
+            emitter.emit(results)     
+        }, 100);
+
+        return emitter;
     }
 }
 
@@ -39,7 +63,7 @@ const SPACES: ISpace[] = [
             type: DeviceType.Switch,
             description: "Guest Room lamp switch",
             value: 1,
-            popularity: 3
+            popularity: 3,
         }]
     },
     {
