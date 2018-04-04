@@ -19,12 +19,14 @@ import {
 
 import { ESHAppComponent } from './esh-app.component'
 import { NavBarComponent } from './nav/navbar.component';
-import { ToastrService } from './common/toastr.service';
+import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
 import { appRoutes } from './routes';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './errors/404.component';
 import { AuthService } from './user/auth.service';
 import { CollapsibleWellComponent } from './common/collapsible-well.component';
+
+declare let toastr : Toastr
 
 @NgModule({
     imports: [BrowserModule, 
@@ -48,7 +50,7 @@ import { CollapsibleWellComponent } from './common/collapsible-well.component';
     ],
     providers: [
         SpaceService,
-        ToastrService,
+        { provide: TOASTR_TOKEN, useValue: toastr },
         CollapsibleWellComponent,
         SpaceRouteActivator,
         SpacesListResolver,
