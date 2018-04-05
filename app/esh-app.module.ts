@@ -33,7 +33,7 @@ import { AuthService } from './user/auth.service';
 
 declare let toastr : Toastr
 declare let $: any;
-
+ 
 @NgModule({
     imports: [BrowserModule, 
         FormsModule, 
