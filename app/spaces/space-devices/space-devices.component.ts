@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { SpaceService } from '../shared/space.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { ISpace, IDevice } from '../index';
 
 @Component({
@@ -23,8 +23,10 @@ export class SpaceDevicesComponent {
     }
 
     ngOnInit() {
-        this.space = this.spaceService.getSpace(
-            +this.route.snapshot.params['id'])
+        this.route.params.forEach((params: Params) =>{
+             this.space = this.spaceService.getSpace(+ params['id'])
+             this.addMode = false
+        })
     }
  
     addDevice() {
