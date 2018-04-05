@@ -20,5 +20,5 @@ export interface IDevice {
     type: DeviceType
     description: string
     value: any,
-    popularity: number,
+    voters: number[]
 }

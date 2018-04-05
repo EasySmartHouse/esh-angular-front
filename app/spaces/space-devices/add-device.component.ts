@@ -48,7 +48,7 @@ export class AddDeviceComponent implements OnInit {
             type: formValues.deviceType,
             description: formValues.deviceDescription,
             value: undefined,
-            popularity: 0
+            voters: []
         }
         this.saveNewDevice.emit(device)
     }

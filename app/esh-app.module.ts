@@ -13,7 +13,9 @@ import {
     AddDeviceComponent,
     DeviceListComponent,
     DeviceTypePipe,
-    SwitchValuePipe
+    SwitchValuePipe,
+    UpvoteComponent,
+    VoterService
 
 } from './spaces/index'
 
@@ -54,7 +56,8 @@ declare let $: any;
         DeviceTypePipe,
         SwitchValuePipe,
         SimpleModalComponent,
-        ModalTriggerDirective
+        ModalTriggerDirective,
+        UpvoteComponent
     ],
     providers: [
         SpaceService,
@@ -64,6 +67,7 @@ declare let $: any;
         SpaceRouteActivator,
         SpacesListResolver,
         AuthService,
+        VoterService,
         { provide: 'canDeactivateCreateSpace', useValue: checkDirtyState }
     ],
     bootstrap: [ESHAppComponent]

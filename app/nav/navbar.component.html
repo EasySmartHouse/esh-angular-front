@@ -42,7 +42,7 @@
     </div>
   </div>
 
-  <simple-modal elementId="searchDevicesResult" title="Matching devices">
+  <simple-modal closeOnBodyClick="true" elementId="searchDevicesResult" title="Matching devices">
     <div class="list-group">
       <a class="list-group-item" *ngFor="let device of foundDevices" [routerLink]="['/spaces', device.spaceId]">{{device.label}}</a>
     </div>

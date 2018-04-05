@@ -2,3 +2,5 @@
  export * from './space-route-activator.service'
  export * from './add-device.component'
  export * from './device-list.component'
+ export * from './upvote.component'
+ export * from './voter.service'

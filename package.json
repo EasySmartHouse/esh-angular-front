@@ -23,6 +23,7 @@
     "ng2f-bootstrap": "^0.0.4",
     "ng2f-server": "^0.2.3",
     "rxjs": "5.0.1",
+    "jquery": "^2.2.4",
     "systemjs": "0.19.40",
     "toastr": "^2.1.4",
     "zone.js": "0.8.4"

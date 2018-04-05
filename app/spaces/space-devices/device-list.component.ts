@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core'
 import { IDevice, DeviceType } from '../index';
 import { OnChanges } from '@angular/core';
+import { AuthService } from '../../user/auth.service';
+import { VoterService } from './voter.service';
 
 @Component({
     selector: 'device-list',
@@ -13,12 +15,29 @@ export class DeviceListComponent implements OnChanges {
     @Input() sortBy: string;
     visibleDevices: IDevice[] = [];
 
+    constructor(private auth: AuthService, private voterService: VoterService){}
+
     ngOnChanges(): void {
         if (this.devices) {
             this.filterDevices(this.filterBy);
             this.sortBy === 'label' ? this.visibleDevices.sort(sortByLabelAsc)
                 : this.visibleDevices.sort(sortByPopularityDesc)
         }
+    }
+
+    toggleVote(device: IDevice) {
+         if (this.userHasVoted(device)){
+             this.voterService.deleteVoter(device, this.auth.currentUser.id)
+         } else {
+             this.voterService.addVoter(device, this.auth.currentUser.id)
+         }
+         if (this.sortBy === 'popularity'){
+            this.visibleDevices.sort(sortByPopularityDesc)
+         }
+    }
+
+    userHasVoted(device: IDevice){
+        return this.voterService.userHasVoted(device, this.auth.currentUser.id)
     }
 
     filterDevices(filter) {
@@ -50,5 +69,5 @@ function sortByLabelAsc(d1: IDevice, d2: IDevice) {
 }
 
 function sortByPopularityDesc(d1: IDevice, d2: IDevice) {
-    return d2.popularity - d1.popularity
+    return d2.voters.length - d1.voters.length
 }
