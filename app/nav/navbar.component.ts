@@ -23,7 +23,6 @@ export class NavBarComponent {
         this.spaceService.searchDevices(searchTerm).subscribe(
             devices => {
                 this.foundDevices = devices;
-                console.log(this.foundDevices);
             }
         )
     }

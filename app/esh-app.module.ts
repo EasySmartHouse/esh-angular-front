@@ -19,14 +19,20 @@ import {
 
 import { ESHAppComponent } from './esh-app.component'
 import { NavBarComponent } from './nav/navbar.component';
-import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
+import { JQ_TOKEN, 
+    TOASTR_TOKEN, 
+    Toastr,
+    CollapsibleWellComponent,
+    SimpleModalComponent,
+    ModalTriggerDirective
+} from './common/index';
 import { appRoutes } from './routes';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './errors/404.component';
 import { AuthService } from './user/auth.service';
-import { CollapsibleWellComponent } from './common/collapsible-well.component';
 
 declare let toastr : Toastr
+declare let $: any;
 
 @NgModule({
     imports: [BrowserModule, 
@@ -43,14 +49,17 @@ declare let toastr : Toastr
         NavBarComponent,
         Error404Component,
         AddDeviceComponent,
-        DeviceListComponent,
+        DeviceListComponent, 
         CollapsibleWellComponent,
         DeviceTypePipe,
-        SwitchValuePipe
+        SwitchValuePipe,
+        SimpleModalComponent,
+        ModalTriggerDirective
     ],
     providers: [
         SpaceService,
         { provide: TOASTR_TOKEN, useValue: toastr },
+        { provide: JQ_TOKEN, useValue: $ },
         CollapsibleWellComponent,
         SpaceRouteActivator,
         SpacesListResolver,
