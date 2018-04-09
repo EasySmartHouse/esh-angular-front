@@ -23,12 +23,12 @@ export class SpaceDevicesComponent {
     }
 
     ngOnInit() {
-        this.route.params.forEach((params: Params) =>{
-             this.space = this.spaceService.getSpace(+ params['id'])
-             this.addMode = false
+        this.route.data.forEach((data) => {
+            this.space = data['space']
+            this.addMode = false
         })
     }
- 
+
     addDevice() {
         this.addMode = true
     }

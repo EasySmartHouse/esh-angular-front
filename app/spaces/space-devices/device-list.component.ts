@@ -15,7 +15,7 @@ export class DeviceListComponent implements OnChanges {
     @Input() sortBy: string;
     visibleDevices: IDevice[] = [];
 
-    constructor(private auth: AuthService, private voterService: VoterService){}
+    constructor(private auth: AuthService, private voterService: VoterService) { }
 
     ngOnChanges(): void {
         if (this.devices) {
@@ -26,17 +26,17 @@ export class DeviceListComponent implements OnChanges {
     }
 
     toggleVote(device: IDevice) {
-         if (this.userHasVoted(device)){
-             this.voterService.deleteVoter(device, this.auth.currentUser.id)
-         } else {
-             this.voterService.addVoter(device, this.auth.currentUser.id)
-         }
-         if (this.sortBy === 'popularity'){
+        if (this.userHasVoted(device)) {
+            this.voterService.deleteVoter(device, this.auth.currentUser.id)
+        } else {
+            this.voterService.addVoter(device, this.auth.currentUser.id)
+        }
+        if (this.sortBy === 'popularity') {
             this.visibleDevices.sort(sortByPopularityDesc)
-         }
+        }
     }
 
-    userHasVoted(device: IDevice){
+    userHasVoted(device: IDevice) {
         return this.voterService.userHasVoted(device, this.auth.currentUser.id)
     }
 
@@ -48,14 +48,14 @@ export class DeviceListComponent implements OnChanges {
             if (filter === 'sensor') {
                 filteredDeviceTypes.push(DeviceType.Sensor)
             } else if (filter === 'switch') {
-                filteredDeviceTypes.push(DeviceType.Switch)
+                filteredDeviceTypes.push(DeviceType.Actuator)
                 filteredDeviceTypes.push(DeviceType.AdjustableSwitch)
             } else if (filter === 'alarm') {
                 filteredDeviceTypes.push(DeviceType.SignalingElement)
             }
 
             this.visibleDevices = this.devices.filter(device => {
-                return filteredDeviceTypes.indexOf(device.type) !== -1
+                return filteredDeviceTypes.indexOf(device.deviceType) !== -1
             })
         }
     }

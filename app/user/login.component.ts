@@ -9,15 +9,15 @@ import { Router } from "@angular/router";
     `]
 })
 export class LoginComponent {
-    constructor(private authService:AuthService, private router:Router){
+    constructor(private authService: AuthService, private router: Router) {
     }
-    login(formValues){
-        this.authService.loginUser(formValues.userName, 
+    login(formValues) {
+        this.authService.loginUser(formValues.userName,
             formValues.password)
         this.router.navigate(['spaces'])
     }
 
-    cancel(){
+    cancel() {
         this.router.navigate(['spaces'])
     }
 }

@@ -23,5 +23,5 @@ import { ISpace } from './index';
     `]
 })
 export class SpaceThumbnailComponent {
-    @Input() space:ISpace
+    @Input() space: ISpace
 }

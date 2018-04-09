@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+
 
 import {
     SpacesListComponent,
@@ -15,14 +17,16 @@ import {
     DeviceTypePipe,
     SwitchValuePipe,
     UpvoteComponent,
-    VoterService
+    VoterService,
+    SpaceResolver
 
 } from './spaces/index'
 
 import { ESHAppComponent } from './esh-app.component'
 import { NavBarComponent } from './nav/navbar.component';
-import { JQ_TOKEN, 
-    TOASTR_TOKEN, 
+import {
+    JQ_TOKEN,
+    TOASTR_TOKEN,
     Toastr,
     CollapsibleWellComponent,
     SimpleModalComponent,
@@ -33,13 +37,14 @@ import { RouterModule } from '@angular/router';
 import { Error404Component } from './errors/404.component';
 import { AuthService } from './user/auth.service';
 
-declare let toastr : Toastr
+declare let toastr: Toastr
 declare let $: any;
- 
+
 @NgModule({
-    imports: [BrowserModule, 
-        FormsModule, 
-        ReactiveFormsModule, 
+    imports: [BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpModule,
         RouterModule.forRoot(appRoutes, { useHash: true })
     ],
     declarations: [
@@ -51,7 +56,7 @@ declare let $: any;
         NavBarComponent,
         Error404Component,
         AddDeviceComponent,
-        DeviceListComponent, 
+        DeviceListComponent,
         CollapsibleWellComponent,
         DeviceTypePipe,
         SwitchValuePipe,
@@ -66,6 +71,7 @@ declare let $: any;
         CollapsibleWellComponent,
         SpaceRouteActivator,
         SpacesListResolver,
+        SpaceResolver,
         AuthService,
         VoterService,
         { provide: 'canDeactivateCreateSpace', useValue: checkDirtyState }

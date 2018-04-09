@@ -8,7 +8,7 @@ export class SpacesListResolver implements Resolve<any>{
     }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        return this.spaceService.getSpaces();
+        return this.spaceService.getSpaces()
     }
 
 }

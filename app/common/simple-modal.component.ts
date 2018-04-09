@@ -4,8 +4,8 @@ import { Element } from "@angular/compiler";
 import { JQ_TOKEN } from "./index";
 
 @Component({
-selector: 'simple-modal',
-template: `
+    selector: 'simple-modal',
+    template: `
     <div id="{{elementId}}" #modalcontainer class="modal fade" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -20,21 +20,21 @@ template: `
             </div>
         </div>
     </div>
-`, 
-styles: [`
+`,
+    styles: [`
     .modal-body { height: 250px; overflow-y: scroll; }
 `]
 })
 export class SimpleModalComponent {
-    @Input() title: string; 
+    @Input() title: string;
     @Input() elementId: string;
     @Input() closeOnBodyClick: string;
     @ViewChild('modalcontainer') contrainerElement: ElementRef
 
-    constructor(@Inject(JQ_TOKEN) private $: any){}
+    constructor( @Inject(JQ_TOKEN) private $: any) { }
 
     closeModal() {
-        if (this.closeOnBodyClick.toLocaleLowerCase() === "true"){
+        if (this.closeOnBodyClick.toLocaleLowerCase() === "true") {
             this.$(this.contrainerElement.nativeElement).modal('hide')
         }
     }

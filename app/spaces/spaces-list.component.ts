@@ -17,13 +17,13 @@ import { ISpace } from './index';
     `
 })
 export class SpacesListComponent {
-    spaces:ISpace[]
+    spaces: ISpace[]
 
-    constructor(private spaceService: SpaceService, 
-        private route: ActivatedRoute){
+    constructor(private spaceService: SpaceService,
+        private route: ActivatedRoute) {
     }
 
-    ngOnInit(){
+    ngOnInit() {
         this.spaces = this.route.snapshot.data['spaces']
     }
 }   

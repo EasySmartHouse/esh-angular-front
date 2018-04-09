@@ -3,7 +3,7 @@ import { AuthService } from '../user/auth.service';
 import { IDevice, SpaceService } from '../spaces/index';
 
 @Component({
-    selector: 'nav-bar', 
+    selector: 'nav-bar',
     templateUrl: '/app/nav/navbar.component.html',
     styles: [`
         .nav.navbar-nav {font-size: 15px;}
@@ -16,10 +16,10 @@ export class NavBarComponent {
     searchTerm: string = "";
     foundDevices: IDevice[];
 
-    constructor(private auth: AuthService, private spaceService: SpaceService){
+    constructor(private auth: AuthService, private spaceService: SpaceService) {
     }
 
-    searchDevices(searchTerm){
+    searchDevices(searchTerm) {
         this.spaceService.searchDevices(searchTerm).subscribe(
             devices => {
                 this.foundDevices = devices;

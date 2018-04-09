@@ -45,7 +45,7 @@ export class AddDeviceComponent implements OnInit {
             label: formValues.deviceLabel,
             address: formValues.deviceAddress,
             enabled: true,
-            type: formValues.deviceType,
+            deviceType: formValues.deviceType,
             description: formValues.deviceDescription,
             value: undefined,
             voters: []

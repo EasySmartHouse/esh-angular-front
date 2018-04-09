@@ -5,18 +5,18 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, Router } from "@angular/ro
 import { Observable } from "rxjs/Observable";
 
 @Injectable()
-export class SpaceRouteActivator implements CanActivate{
+export class SpaceRouteActivator implements CanActivate {
 
-    constructor(private spaceService:SpaceService, 
-        private router:Router){
+    constructor(private spaceService: SpaceService,
+        private router: Router) {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
         const spaceExists = !!this.spaceService.getSpace(+route.params['id'])
-    
+
         if (!spaceExists)
             this.router.navigate(['/404'])
         return spaceExists;
     }
-    
+
 }

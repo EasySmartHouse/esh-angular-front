@@ -14,18 +14,19 @@ import { SpaceService } from './shared/index';
   `]
 })
 export class CreateSpaceComponent {
-    isDirty:boolean = true
-    constructor(private router: Router, 
-        private spaceService:SpaceService){
+    isDirty: boolean = true
+    constructor(private router: Router,
+        private spaceService: SpaceService) {
     }
 
-    saveSpace(formValues){
-        this.spaceService.saveSpace(formValues)
-        this.isDirty = false
-        this.router.navigate(['/spaces'])
+    saveSpace(formValues) {
+        this.spaceService.saveSpace(formValues).subscribe(space => {
+            this.router.navigate(['/spaces'])
+            this.isDirty = false
+        })
     }
 
-    cancel(){
+    cancel() {
         this.router.navigate(['/spaces'])
     }
 

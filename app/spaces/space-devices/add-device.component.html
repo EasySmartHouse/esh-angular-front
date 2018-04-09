@@ -1,43 +1,43 @@
 <div class="col-md-12">
-    <h3>Add Device</h3>
-  </div>
-  <div class="col-md-6">
-    <form [formGroup]="addDeviceForm" (ngSubmit)="saveDevice(addDeviceForm.value)" autocomplete="off">
-      <div class="form-group" [ngClass]="{'error': deviceLabel.invalid && deviceLabel.dirty }">
-        <label for="deviceLabel">Device label:</label>
-        <em *ngIf="deviceLabel.invalid && deviceLabel.dirty">Required</em>
-        <input formControlName="deviceLabel" id="deviceLabel" type="text" class="form-control" placeholder="Device label..." />
-      </div>
-      <div class="form-group" [ngClass]="{'error': deviceAddress.invalid && deviceAddress.dirty }">
-        <label for="deviceAddress">Device address:</label>
-        <em *ngIf="deviceAddress.invalid && deviceAddress.dirty">Required</em>
-        <select formControlName="deviceAddress" class="form-control">
-          <option value="">select device address...</option>
-          <option value="1">USB:0:1:1</option>
-          <option value="2">DS234567345345DF</option>
-          <option value="3">AD23239878345345FF</option>
-          <option value="4">COM:1:23423:23</option>
-        </select>
-      </div>
-      <div class="form-group" [ngClass]="{'error': deviceType.invalid && deviceType.dirty }">
-        <label for="deviceType">Device type:</label>
-        <em *ngIf="deviceType.invalid && deviceType.dirty">Required</em>
-        <select formControlName="deviceType" class="form-control">
-          <option value="">select device type...</option>
-          <option value="Sensor">Sensor</option>
-          <option value="Switch">Switch</option>
-          <option value="AdjustableSwitch">Adjustable switch</option>
-          <option value="SignalingElement">Signaling element</option>
-        </select>
-      </div>
-      <div class="form-group" [ngClass]="{'error': deviceDescription.invalid && deviceDescription.dirty }">
-        <label for="deviceDescription">Device description:</label>
-        <em *ngIf="deviceDescription.invalid && deviceDescription.dirty && deviceDescription?.errors.required">Required</em>
-        <em *ngIf="deviceDescription.invalid && deviceDescription.dirty && deviceDescription?.errors.maxLength">Cannot exceed 400 characters</em>
-        <em *ngIf="deviceDescription.invalid && deviceDescription.dirty && deviceDescription?.errors.restrictedWords">Restricted words found: {{deviceDescription.errors.restrictedWords}}</em>
-        <textarea formControlName="deviceDescription" id="deviceDescription" rows=3 class="form-control" placeholder="Device description..."></textarea>
-      </div>
-      <button type="submit" [disabled]="addDeviceForm.invalid" class="btn btn-primary">Save</button>
-      <button type="button" (click)="cancel()" class="btn btn-default">Cancel</button>
-    </form>
-  </div>
+  <h3>Add Device</h3>
+</div>
+<div class="col-md-6">
+  <form [formGroup]="addDeviceForm" (ngSubmit)="saveDevice(addDeviceForm.value)" autocomplete="off">
+    <div class="form-group" [ngClass]="{'error': deviceLabel.invalid && deviceLabel.dirty }">
+      <label for="deviceLabel">Device label:</label>
+      <em *ngIf="deviceLabel.invalid && deviceLabel.dirty">Required</em>
+      <input formControlName="deviceLabel" id="deviceLabel" type="text" class="form-control" placeholder="Device label..." />
+    </div>
+    <div class="form-group" [ngClass]="{'error': deviceAddress.invalid && deviceAddress.dirty }">
+      <label for="deviceAddress">Device address:</label>
+      <em *ngIf="deviceAddress.invalid && deviceAddress.dirty">Required</em>
+      <select formControlName="deviceAddress" class="form-control">
+        <option value="">select device address...</option>
+        <option value="1">USB:0:1:1</option>
+        <option value="2">DS234567345345DF</option>
+        <option value="3">AD23239878345345FF</option>
+        <option value="4">COM:1:23423:23</option>
+      </select>
+    </div>
+    <div class="form-group" [ngClass]="{'error': deviceType.invalid && deviceType.dirty }">
+      <label for="deviceType">Device type:</label>
+      <em *ngIf="deviceType.invalid && deviceType.dirty">Required</em>
+      <select formControlName="deviceType" class="form-control">
+        <option value="">select device type...</option>
+        <option value="Sensor">Sensor</option>
+        <option value="Switch">Switch</option>
+        <option value="AdjustableSwitch">Adjustable switch</option>
+        <option value="SignalingElement">Signaling element</option>
+      </select>
+    </div>
+    <div class="form-group" [ngClass]="{'error': deviceDescription.invalid && deviceDescription.dirty }">
+      <label for="deviceDescription">Device description:</label>
+      <em *ngIf="deviceDescription.invalid && deviceDescription.dirty && deviceDescription?.errors.required">Required</em>
+      <em *ngIf="deviceDescription.invalid && deviceDescription.dirty && deviceDescription?.errors.maxLength">Cannot exceed 400 characters</em>
+      <em *ngIf="deviceDescription.invalid && deviceDescription.dirty && deviceDescription?.errors.restrictedWords">Restricted words found: {{deviceDescription.errors.restrictedWords}}</em>
+      <textarea formControlName="deviceDescription" id="deviceDescription" rows=3 class="form-control" placeholder="Device description..."></textarea>
+    </div>
+    <button type="submit" [disabled]="addDeviceForm.invalid" class="btn btn-primary">Save</button>
+    <button type="button" (click)="cancel()" class="btn btn-default">Cancel</button>
+  </form>
+</div>

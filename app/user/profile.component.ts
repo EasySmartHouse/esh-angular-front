@@ -17,12 +17,12 @@ import { Toastr, TOASTR_TOKEN } from '../common/toastr.service';
 })
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup
-  private firstName:FormControl
-  private lastName:FormControl
+  private firstName: FormControl
+  private lastName: FormControl
 
   constructor(private router: Router,
     private authService: AuthService,
-    @Inject(TOASTR_TOKEN) private toastr: Toastr ) {
+    @Inject(TOASTR_TOKEN) private toastr: Toastr) {
   }
 
   ngOnInit(): void {
@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
       lastName: this.lastName
     })
   }
- 
+
   saveProfile(formValue) {
     if (this.profileForm.valid) {
       this.authService.updateCurrentUser(

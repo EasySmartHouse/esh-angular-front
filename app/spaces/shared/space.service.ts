@@ -1,81 +1,65 @@
 import { Injectable, EventEmitter } from '@angular/core'
 import { Subject } from 'rxjs/Subject';
 import { ISpace, DeviceType } from './space.model';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import { IDevice } from '../index';
+import { Http, Response, Headers, Request, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/map';
+
+const httpOptions = {
+    headers: new Headers({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class SpaceService {
-    getSpaces(): Subject<ISpace[]> {
-        let subject = new Subject<ISpace[]>()
-        setTimeout(() => { subject.next(SPACES); subject.complete(); }, 200)
-        return subject;
+
+    constructor(private http: Http) {
     }
 
-    getSpace(id: number): ISpace {
-        return SPACES.find(space => space.id === id)
-    } 
+    private spacesUrl = 'http://localhost:8080/spaces';
+    private devicesUrl = 'http://localhost:8080/devices';
 
-    saveSpace(space){
-        space.id = 999
-        SPACES.push(space)
+    getSpaces(): Observable<ISpace[]> {
+        return this.http.get(this.spacesUrl).map(response => {
+            return <ISpace[]>response.json()
+        }).catch(this.handleError)
     }
 
-    updateSpace(space){
-         let index = SPACES.findIndex(x => x.id = space.id)
-         SPACES[index] = space
+    getSpace(id: number): Observable<ISpace> {
+        return this.http.get(this.spacesUrl + "/" + id).map(response => {
+            return <ISpace>response.json()
+        }).catch(this.handleError)
     }
 
-    searchDevices(searchTerm: string){
-        var term = searchTerm.toLocaleLowerCase();
-        var results: IDevice[] = [];
+    saveSpace(space): Observable<ISpace> {
+        let options = new RequestOptions(httpOptions)
 
-        SPACES.forEach(space =>{
-            var matchingDevices = space.devices.filter(device=>
-                device.label.toLocaleLowerCase().indexOf(term) > -1
-            )
-            matchingDevices = matchingDevices.map((device:any) => {
-                device.spaceId = space.id
-                return device;
-            })
-            results = results.concat(matchingDevices)
-        })
-
-        var emitter = new EventEmitter(true);
-        setTimeout(() => {
-            emitter.emit(results)     
-        }, 100);
-
-        return emitter;
+        return this.http.post(this.spacesUrl, space, options)
+            .map((response: Response) => {
+                return response.json()
+            }).catch(this.handleError);
     }
+
+    updateSpace(space) {
+        let options = new RequestOptions(httpOptions)
+
+        return this.http.put(this.spacesUrl, space, options)
+            .map((response: Response) => {
+                return response.json()
+            }).catch(this.handleError);
+    }
+
+    searchDevices(searchTerm: string) {
+        let options = new RequestOptions(httpOptions)
+
+        return this.http.get(this.devicesUrl + '?search=' + encodeURIComponent(searchTerm), options)
+            .map((response: Response) => {
+                return response.json()
+            }).catch(this.handleError);
+    }
+
+    private handleError(error: Response) {
+        return Observable.throw(error.status)
+    }
+
 }
-
-const SPACES: ISpace[] = [
-    {
-        id: 1,
-        name: "Guest room",
-        image: '/app/assets/images/026-lamp-1.png',
-        devices: [{
-            id: 123,
-            label: "Lamp switch",
-            address: "AD3452347767767FF",
-            enabled: true,
-            type: DeviceType.Switch,
-            description: "Guest Room lamp switch",
-            value: 1,
-            voters: [1, 2, 3],
-        }]
-    },
-    {
-        id: 2,
-        name: "Main room",
-        image: '/app/assets/images/040-home.png',
-        devices: []
-    },
-    {
-        id: 3,
-        name: "Kitchen",
-        image: '/app/assets/images/033-refrigerator.png',
-        devices: []
-    },
-]

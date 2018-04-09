@@ -6,10 +6,10 @@ export interface ISpace {
 }
 
 export enum DeviceType {
-    Sensor,
-    Switch,
-    AdjustableSwitch, 
-    SignalingElement
+    Sensor = 0,
+    Actuator = 1,
+    AdjustableSwitch = 2,
+    SignalingElement = 3
 }
 
 export interface IDevice {
@@ -17,7 +17,7 @@ export interface IDevice {
     label: string
     address: string
     enabled: boolean
-    type: DeviceType
+    deviceType: DeviceType
     description: string
     value: any,
     voters: number[]
