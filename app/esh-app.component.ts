@@ -6,5 +6,6 @@ import { Component } from '@angular/core'
     <router-outlet></router-outlet>`
 })
 export class ESHAppComponent {
-
+    title = 'Easy SmartHouse';
+    static API_URL = "http://localhost:8080";
 }

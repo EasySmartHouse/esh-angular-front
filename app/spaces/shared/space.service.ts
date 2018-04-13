@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Rx';
 import { IDevice } from '../index';
 import { Http, Response, Headers, Request, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { ESHAppComponent } from '../../esh-app.component';
 
 const httpOptions = {
     headers: new Headers({ 'Content-Type': 'application/json' })
@@ -14,45 +15,47 @@ const httpOptions = {
 export class SpaceService {
 
     constructor(private http: Http) {
+        let headers = new Headers()
+        headers.append('Accept', 'application/json')
+        headers.append("Authorization", "Basic " + localStorage.getItem('authToken'))
+
+        let options = new RequestOptions()
+        options.headers = headers
+        this.httpOptions = options
     }
 
-    private spacesUrl = 'http://localhost:8080/spaces';
-    private devicesUrl = 'http://localhost:8080/devices';
+    private spacesApiUrl = ESHAppComponent.API_URL + '/spaces';
+    private devicesApiUrl = ESHAppComponent.API_URL + '/devices';
+    private httpOptions;
 
     getSpaces(): Observable<ISpace[]> {
-        return this.http.get(this.spacesUrl).map(response => {
+        return this.http.get(this.spacesApiUrl, this.httpOptions).map(response => {
             return <ISpace[]>response.json()
         }).catch(this.handleError)
     }
 
     getSpace(id: number): Observable<ISpace> {
-        return this.http.get(this.spacesUrl + "/" + id).map(response => {
+        return this.http.get(this.spacesApiUrl + "/" + id, this.httpOptions).map(response => {
             return <ISpace>response.json()
         }).catch(this.handleError)
     }
 
     saveSpace(space): Observable<ISpace> {
-        let options = new RequestOptions(httpOptions)
-
-        return this.http.post(this.spacesUrl, space, options)
+        return this.http.post(this.spacesApiUrl, space, this.httpOptions)
             .map((response: Response) => {
                 return response.json()
             }).catch(this.handleError);
     }
 
     updateSpace(space) {
-        let options = new RequestOptions(httpOptions)
-
-        return this.http.put(this.spacesUrl, space, options)
+        return this.http.put(this.spacesApiUrl, space, this.httpOptions)
             .map((response: Response) => {
                 return response.json()
             }).catch(this.handleError);
     }
 
     searchDevices(searchTerm: string) {
-        let options = new RequestOptions(httpOptions)
-
-        return this.http.get(this.devicesUrl + '?search=' + encodeURIComponent(searchTerm), options)
+        return this.http.get(this.devicesApiUrl + '?search=' + encodeURIComponent(searchTerm), this.httpOptions)
             .map((response: Response) => {
                 return response.json()
             }).catch(this.handleError);

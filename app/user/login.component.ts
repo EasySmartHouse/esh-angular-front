@@ -12,7 +12,7 @@ export class LoginComponent {
     constructor(private authService: AuthService, private router: Router) {
     }
     login(formValues) {
-        this.authService.loginUser(formValues.userName,
+        this.authService.loginUser(formValues.username,
             formValues.password)
         this.router.navigate(['spaces'])
     }

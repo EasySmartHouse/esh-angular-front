@@ -26,6 +26,10 @@ export class DeviceListComponent implements OnChanges {
     }
 
     toggleVote(device: IDevice) {
+        if (!this.auth.currentUser){
+            return;
+        }
+
         if (this.userHasVoted(device)) {
             this.voterService.deleteVoter(device, this.auth.currentUser.id)
         } else {
@@ -37,6 +41,9 @@ export class DeviceListComponent implements OnChanges {
     }
 
     userHasVoted(device: IDevice) {
+        if (!this.auth.currentUser){
+            return false;
+        }
         return this.voterService.userHasVoted(device, this.auth.currentUser.id)
     }
 

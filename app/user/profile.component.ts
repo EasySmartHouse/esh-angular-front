@@ -17,8 +17,8 @@ import { Toastr, TOASTR_TOKEN } from '../common/toastr.service';
 })
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup
-  private firstName: FormControl
-  private lastName: FormControl
+  private firstname: FormControl
+  private lastname: FormControl
 
   constructor(private router: Router,
     private authService: AuthService,
@@ -26,35 +26,35 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.firstName = new FormControl(
-      this.authService.currentUser.firstName, [Validators.required,
+    this.firstname = new FormControl(
+      this.authService.currentUser.firstname, [Validators.required,
       Validators.pattern('[a-zA-Z].*')]
     )
-    this.lastName = new FormControl(
-      this.authService.currentUser.lastName, Validators.required
+    this.lastname = new FormControl(
+      this.authService.currentUser.lastname, Validators.required
     )
     this.profileForm = new FormGroup({
-      firstName: this.firstName,
-      lastName: this.lastName
+      firstname: this.firstname,
+      lastname: this.lastname
     })
   }
 
   saveProfile(formValue) {
     if (this.profileForm.valid) {
       this.authService.updateCurrentUser(
-        formValue.firstName,
-        formValue.lastName
+        formValue.firstname,
+        formValue.lastname
       )
       this.toastr.success('Profile saved')
     }
   }
 
   validateLastName() {
-    return this.lastName.valid || this.lastName.untouched
+    return this.lastname.valid || this.lastname.untouched
   }
 
   validateFirstName() {
-    return this.firstName.valid || this.firstName.untouched
+    return this.firstname.valid || this.firstname.untouched
   }
 
   cancel() {
