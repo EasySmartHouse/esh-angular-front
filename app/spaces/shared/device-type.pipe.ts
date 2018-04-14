@@ -5,7 +5,6 @@ import { DeviceType } from '../index';
 export class DeviceTypePipe implements PipeTransform {
 
     transform(value: DeviceType) {
-        console.log(value)
         switch (value) {
             case DeviceType.Sensor: return 'Sensor device'
             case DeviceType.Actuator: return 'Switch device'

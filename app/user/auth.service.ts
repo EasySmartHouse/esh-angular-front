@@ -74,7 +74,6 @@ export class AuthService {
         let options = new RequestOptions();
         options.headers = headers;
 
-        console.log(this.currentUser)
         return this.http.put(`${this.userApiUrl}/${this.currentUser.id}`,
             JSON.stringify(this.currentUser), options
         )
