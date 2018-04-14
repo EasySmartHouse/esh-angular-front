@@ -3,13 +3,15 @@ import { IDevice, DeviceType } from '../index';
 import { OnChanges } from '@angular/core';
 import { AuthService } from '../../user/auth.service';
 import { VoterService } from './voter.service';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
     selector: 'device-list',
     templateUrl: 'app/spaces/space-devices/device-list.component.html',
     styles: ['collapsible-well h6 {margin-top:-5px; margin-bottom:10px }']
 })
-export class DeviceListComponent implements OnChanges {
+export class DeviceListComponent implements OnChanges, OnInit {
+
     @Input() devices: IDevice[]
     @Input() filterBy: string;
     @Input() sortBy: string;
@@ -17,6 +19,10 @@ export class DeviceListComponent implements OnChanges {
 
     constructor(private auth: AuthService, private voterService: VoterService) { }
 
+    ngOnInit(): void {
+        this.auth.getUser()
+    }
+    
     ngOnChanges(): void {
         if (this.devices) {
             this.filterDevices(this.filterBy);

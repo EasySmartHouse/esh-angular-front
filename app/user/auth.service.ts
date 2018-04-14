@@ -13,6 +13,24 @@ export class AuthService {
     private userApiUrl = ESHAppComponent.API_URL + '/user';
     currentUser: IUser
 
+    getUser() {
+        let headers = new Headers();
+        headers.append('Accept', 'application/json')
+        headers.append("Authorization", "Basic " + localStorage.getItem('authToken'));
+
+        let options = new RequestOptions();
+        options.headers = headers;
+
+        this.http.get(this.userApiUrl + "/login", options)
+            .map(response => {
+                return <IUser>response.json();
+            })
+            .catch(this.handleError)
+            .subscribe(user => {
+                this.currentUser = user;
+            })
+    }
+
     loginUser(username: string, password: string) {
         let headers = new Headers();
         headers.append('Accept', 'application/json')
@@ -42,7 +60,7 @@ export class AuthService {
     }
 
     isAuthenticated() {
-        return !!localStorage.getItem('currentUser');
+        return !!localStorage.getItem('authToken');
     }
 
     updateCurrentUser(firstname: string, lastname: string) {
@@ -53,7 +71,7 @@ export class AuthService {
     logOut() {
         return this.http.post(ESHAppComponent.API_URL + "/logout", {})
             .map((response: Response) => {
-                localStorage.removeItem('currentUser');
+                localStorage.removeItem('authToken');
                 this.currentUser = null
             });
     }

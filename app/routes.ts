@@ -13,7 +13,7 @@ import { SpaceResolver } from './spaces/space-resolver.service';
 import { UrlPermission } from "./permission/url.permission";
 
 export const appRoutes: Routes = [
-    { path: 'spaces/new', component: CreateSpaceComponent,  canActivate: [UrlPermission], canDeactivate: ['canDeactivateCreateSpace'] },
+    { path: 'spaces/new', component: CreateSpaceComponent, canDeactivate: ['canDeactivateCreateSpace'], canActivate: [UrlPermission] },
     { path: 'spaces', component: SpacesListComponent,  canActivate: [UrlPermission], resolve: { spaces: SpacesListResolver } },
     { path: 'spaces/:id', component: SpaceDevicesComponent,  canActivate: [UrlPermission], resolve: { space: SpaceResolver } },
     { path: 'spaces/device/add',  canActivate: [UrlPermission], component: AddDeviceComponent },
