@@ -41,17 +41,16 @@ export class AuthService {
         let options = new RequestOptions();
         options.headers = headers;
 
-        this.http.get(this.userApiUrl + "/login", options)
-            .map(response => {
-                let user = <IUser>response.json();
+        return this.http.get(this.userApiUrl + "/login", options)
+            .do(response => {
+                let user = <IUser>response.json()
                 if (user) {
-                    localStorage.setItem('authToken', base64Credential);
+                    localStorage.setItem('authToken', base64Credential)
+                    this.currentUser = user;
                 }
                 return user;
-            })
-            .catch(this.handleError)
-            .subscribe(user => {
-                this.currentUser = user;
+            }).catch(error => {
+                return Observable.of(false)
             })
     }
 
@@ -85,7 +84,7 @@ export class AuthService {
         return this.http.post(ESHAppComponent.API_URL + "/logout", {})
             .map((response: Response) => {
                 localStorage.removeItem('authToken');
-                this.currentUser = null
+                this.currentUser = undefined
             });
     }
 }
