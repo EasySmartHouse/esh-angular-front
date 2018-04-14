@@ -66,6 +66,19 @@ export class AuthService {
     updateCurrentUser(firstname: string, lastname: string) {
         this.currentUser.firstname = firstname
         this.currentUser.lastname = lastname
+
+        let headers = new Headers()
+        headers.append('Accept', 'application/json')
+        headers.append('Content-Type', 'application/json')
+        headers.append("Authorization", "Basic " + localStorage.getItem('authToken'))
+
+        let options = new RequestOptions();
+        options.headers = headers;
+
+        console.log(this.currentUser)
+        return this.http.put(`${this.userApiUrl}/${this.currentUser.id}`,
+            JSON.stringify(this.currentUser), options
+        )
     }
 
     logOut() {

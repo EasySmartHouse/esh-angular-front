@@ -45,8 +45,9 @@ export class ProfileComponent implements OnInit {
       this.authService.updateCurrentUser(
         formValue.firstname,
         formValue.lastname
-      )
-      this.toastr.success('Profile saved')
+      ).subscribe(() => {
+        this.toastr.success('Profile saved')
+      })
     }
   }
 
