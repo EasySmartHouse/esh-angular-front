@@ -20,20 +20,26 @@
     "@angular/platform-browser-dynamic": "4.0.0",
     "@angular/router": "4.0.0",
     "core-js": "2.4.1",
+    "jquery": "^2.2.4",
     "ng2f-bootstrap": "^0.0.4",
     "ng2f-server": "^0.2.3",
     "rxjs": "5.0.1",
-    "jquery": "^2.2.4",
     "systemjs": "0.19.40",
     "toastr": "^2.1.4",
     "zone.js": "0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "^1.7.3",
+    "@angular/cli": "^1.7.4",
     "@types/core-js": "0.9.34",
+    "@types/jasmine": "^2.8.6",
     "@types/node": "6.0.46",
     "concurrently": "3.2.0",
-    "typescript": "2.1.1"
+    "jasmine-core": "^2.99.1",
+    "karma": "^1.7.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.1",
+    "karma-jasmine-html-reporter": "^1.0.0",
+    "typescript": "2.1.6"
   },
   "repository": {}
 }
