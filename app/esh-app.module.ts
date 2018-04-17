@@ -37,6 +37,7 @@ import { appRoutes } from './routes';
 import { RouterModule } from '@angular/router';
 import { Error404Component } from './errors/404.component';
 import { AuthService } from './user/auth.service';
+import { PreloadAllModules } from '@angular/router/src/router_preloader';
 
 declare let toastr: Toastr
 declare let $: any;
@@ -46,7 +47,9 @@ declare let $: any;
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
-        RouterModule.forRoot(appRoutes, { useHash: true })
+        RouterModule.forRoot(appRoutes, 
+            { preloadingStrategy: PreloadAllModules, useHash: true }
+        )
     ],
     declarations: [
         ESHAppComponent,
