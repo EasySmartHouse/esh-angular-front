@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core'
 import { Subject } from 'rxjs/Subject';
 import { ISpace, DeviceType } from './space.model';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import { IDevice } from '../index';
 import { Http, Response, Headers, Request, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';

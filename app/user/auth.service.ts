@@ -2,8 +2,7 @@ import { Injectable } from "@angular/core";
 import { IUser } from "./user.model";
 import { Http, Response, Headers, Request, RequestOptions } from '@angular/http';
 import { ESHAppComponent } from "../esh-app.component";
-import { Observable } from 'rxjs/Rx';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthService {
