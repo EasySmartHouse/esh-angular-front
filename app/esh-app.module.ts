@@ -34,10 +34,9 @@ import {
     ModalTriggerDirective
 } from './common/index';
 import { appRoutes } from './routes';
-import { RouterModule } from '@angular/router';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 import { Error404Component } from './errors/404.component';
 import { AuthService } from './user/auth.service';
-import { PreloadAllModules } from '@angular/router/src/router_preloader';
 
 declare let toastr: Toastr
 declare let $: any;
