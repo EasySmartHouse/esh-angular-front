@@ -61,6 +61,13 @@ export class SpaceService {
             }).catch(this.handleError);
     }
 
+    getAddresses(): Observable<string[]> {
+        return this.http.get(this.devicesApiUrl + '/addresses', this.httpOptions)
+        .map(response => {
+            return <string[]>response.json()
+        }).catch(this.handleError)
+    }
+
     private handleError(error: Response) {
         return Observable.throw(error.status)
     }

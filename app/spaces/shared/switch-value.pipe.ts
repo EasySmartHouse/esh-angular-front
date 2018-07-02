@@ -7,7 +7,7 @@ export class SwitchValuePipe implements PipeTransform {
         switch (value) {
             case 0: return 'Off'
             case 1: return 'On'
-            default: value.toString();
+            default: 'Undefined';
         }
     }
 

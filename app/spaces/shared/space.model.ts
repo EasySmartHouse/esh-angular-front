@@ -12,6 +12,14 @@ export enum DeviceType {
     SignalingElement = 3
 }
 
+export namespace DeviceType {
+
+    export function keys(): Array<string>{
+      var keys = Object.keys(DeviceType);
+      return keys.slice(keys.length / 2, keys.length-1);
+    }
+}
+
 export interface IDevice {
     id: number
     label: string

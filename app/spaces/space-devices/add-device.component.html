@@ -13,10 +13,7 @@
       <em *ngIf="deviceAddress.invalid && deviceAddress.dirty">Required</em>
       <select formControlName="deviceAddress" class="form-control">
         <option value="">select device address...</option>
-        <option value="1">USB:0:1:1</option>
-        <option value="2">DS234567345345DF</option>
-        <option value="3">AD23239878345345FF</option>
-        <option value="4">COM:1:23423:23</option>
+        <option *ngFor="let addr of devicesAddresses" [value]="addr">{{addr}}</option>
       </select>
     </div>
     <div class="form-group" [ngClass]="{'error': deviceType.invalid && deviceType.dirty }">
@@ -24,10 +21,7 @@
       <em *ngIf="deviceType.invalid && deviceType.dirty">Required</em>
       <select formControlName="deviceType" class="form-control">
         <option value="">select device type...</option>
-        <option value="Sensor">Sensor</option>
-        <option value="Switch">Switch</option>
-        <option value="AdjustableSwitch">Adjustable switch</option>
-        <option value="SignalingElement">Signaling element</option>
+        <option *ngFor="let type of devicesTypes" [value]="type">{{type}}</option>
       </select>
     </div>
     <div class="form-group" [ngClass]="{'error': deviceDescription.invalid && deviceDescription.dirty }">

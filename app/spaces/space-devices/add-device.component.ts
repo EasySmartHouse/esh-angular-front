@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core'
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { IDevice, restrictedWords } from '../index';
+import { IDevice, restrictedWords, SpaceService, DeviceType } from '../index';
 
 @Component({
     selector: 'add-device',
@@ -24,6 +24,12 @@ export class AddDeviceComponent implements OnInit {
     deviceType: FormControl
     deviceDescription: FormControl
 
+    devicesAddresses: string[] = []
+    devicesTypes: string[] = []
+
+    constructor(private spaceService: SpaceService) {
+    }
+
     ngOnInit(): void {
         this.deviceLabel = new FormControl('', Validators.required)
         this.deviceAddress = new FormControl('', Validators.required)
@@ -37,6 +43,10 @@ export class AddDeviceComponent implements OnInit {
             deviceType: this.deviceType,
             deviceDescription: this.deviceDescription
         })
+
+        this.devicesTypes = DeviceType.keys()
+        this.spaceService.getAddresses()
+            .subscribe(addresses => this.devicesAddresses = addresses)
     }
 
     saveDevice(formValues) {
